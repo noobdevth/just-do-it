@@ -1,0 +1,20 @@
+version: '3'
+services:
+  frontend:
+    ports:
+    - "3000:3000"
+    volumes:
+    - ./frontend/public:/opt/app/public
+    - ./frontend/src:/opt/app/src
+    - ./frontend/yarn.lock:/opt/app/yarn.lock
+    - ./frontend/package.json:/opt/app/package.json
+    - ./frontend/.babelrc:/opt/app/.babelrc
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+      NODE_ENV: "development"
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    cap_add:
+    - ALL
